@@ -12,6 +12,25 @@
   z-index: 2;
 }
 
+.resume_button {
+  height: 35px;
+  width: 140px;
+  border-radius: 50px;
+  border: none;
+  background-color: var(--secondary-color);
+  color: white;
+  letter-spacing: 1px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-weight: bold;
+  padding: 10px;
+  @media screen and (max-width: 900px) {
+    display: none;
+  }
+}
+
 .app__navbar-logo {
   display: flex;
   justify-content: flex-start;
@@ -113,9 +132,25 @@
       margin: 0.5rem 1rem;
     }
 
-    .cross-icon{
-        width: 25px;
-        height: 25px;
+    .cross-icon {
+      width: 25px;
+      height: 25px;
+    }
+
+    .resume_button_small {
+      height: 35px;
+      width: 140px;
+      border-radius: 50px;
+      border: none;
+      background-color: var(--secondary-color);
+      color: white;
+      letter-spacing: 1px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      font-weight: bold;
+      padding: 10px;
     }
 
     ul {

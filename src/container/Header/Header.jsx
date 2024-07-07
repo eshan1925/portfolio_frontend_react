@@ -3,18 +3,17 @@ import { motion } from "framer-motion";
 import { images } from "../../constants";
 import { AppWrap } from "../../wrapper";
 
-
 import "./Header.scss";
 const scaleVariants = {
-  whileInView:{
-    scale:[0,1],
-    opacity:[0,1],
-    transition:{
-      duration:1,
-      ease:'easeInOut'
-    }
-  }
-}
+  whileInView: {
+    scale: [0, 1],
+    opacity: [0, 1],
+    transition: {
+      duration: 1,
+      ease: "easeInOut",
+    },
+  },
+};
 const Header = () => {
   return (
     <div className="app__header app__flex">
@@ -35,7 +34,7 @@ const Header = () => {
           <div className="tag-cmp app__flex">
             <p className="p-text">Full Stack Web Developer</p>
             <p className="p-text">Java Programmer</p>
-            <p className="p-text">Flutter Developer</p>
+            <p className="p-text">MERN | NEXT JS</p>
           </div>
         </div>
       </motion.div>
@@ -56,18 +55,20 @@ const Header = () => {
       </motion.div>
 
       <motion.div
-      variant={scaleVariants}
-      whileInView={scaleVariants.whileInView}
-      className="app__header-circles"
+        variant={scaleVariants}
+        whileInView={scaleVariants.whileInView}
+        className="app__header-circles"
       >
-        {[images.flutter,images.redux,images.sass].map((circle,index)=>(
-          <div className="circle-cmp app-flex" key={`circle-${index}`}>
-            <img src={circle} alt="circle" />
-          </div>
-        ))}
+        {[images.react, images.nextjs, images.java, images.javascript].map(
+          (circle, index) => (
+            <div className="circle-cmp app-flex" key={`circle-${index}`}>
+              <img src={circle} alt="circle" />
+            </div>
+          )
+        )}
       </motion.div>
     </div>
   );
 };
 
-export default AppWrap(Header,'home');
+export default AppWrap(Header, "home");

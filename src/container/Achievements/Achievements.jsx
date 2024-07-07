@@ -1,23 +1,24 @@
-import React, { useState, useEffect } from 'react';
-import { AiFillEye, AiFillGithub } from 'react-icons/ai';
+import React, { useState, useEffect } from 'react'
+import { AiFillEye } from 'react-icons/ai';
 import { motion } from 'framer-motion';
+import { AppWrap,MotionWrap } from '../../wrapper';
+import { urlFor,client } from '../../client';
 
-import { AppWrap, MotionWrap } from '../../wrapper';
-import { urlFor, client } from '../../client';
-import './Work.scss';
+import "./Achievements.scss";
 
-const Work = () => {
-  const [works, setWorks] = useState([]);
+const Achievements = () => {
+
+  const [certach, setCertAch] = useState([]);
   const [filterWork, setFilterWork] = useState([]);
-  const [activeFilter, setActiveFilter] = useState('Featured');
+  const [activeFilter, setActiveFilter] = useState('All');
   const [animateCard, setAnimateCard] = useState({ y: 0, opacity: 1 });
 
   useEffect(() => {
-    const query = '*[_type == "works"] | order(_createdAt desc)';
+    const query = '*[_type == "achievements"] | order(_createdAt desc)';
 
     client.fetch(query).then((data) => {
-      setWorks(data);
-      setFilterWork(data.filter((work) => work.tags.includes("Featured")));
+      setCertAch(data);
+      setFilterWork(data);
     });
   }, []);
 
@@ -27,21 +28,21 @@ const Work = () => {
 
     setTimeout(() => {
       setAnimateCard([{ y: 0, opacity: 1 }]);
-
+      console.log(certach);
       if (item === 'All') {
-        setFilterWork(works);
+        setFilterWork(certach);
       } else {
-        setFilterWork(works.filter((work) => work.tags.includes(item)));
+        setFilterWork(certach.filter((work) => work.tags.includes(item)));
       }
     }, 500);
   };
 
   return (
     <>
-      <h2 className="head-text">My Creative <span>Portfolio</span> Section</h2>
+      <h2 className="head-text">My Certificates <span>And</span> Achievements</h2>
 
       <div className="app__work-filter">
-        {['Featured','Web App', 'Mobile App','Miscellaneous','All'].map((item, index) => (
+        {['Achievements','Certificates','All'].map((item, index) => (
           <div
             key={index}
             onClick={() => handleWorkFilter(item)}
@@ -69,25 +70,15 @@ const Work = () => {
                 transition={{ duration: 0.25, ease: 'easeInOut', staggerChildren: 0.5 }}
                 className="app__work-hover app__flex"
               >
-                <a href={work.projectLink} target="_blank" rel="noreferrer">
+                <a href={work.Link} target="_blank" rel="noreferrer">
 
                   <motion.div
                     whileInView={{ scale: [0, 1] }}
                     whileHover={{ scale: [1, 0.90] }}
-                    transition={{ duration: 0.25 }}
+                    transition={{ duration: 0.25 }} 
                     className="app__flex"
                   >
                     <AiFillEye />
-                  </motion.div>
-                </a>
-                <a href={work.codeLink} target="_blank" rel="noreferrer">
-                  <motion.div
-                    whileInView={{ scale: [0, 1] }}
-                    whileHover={{ scale: [1, 0.90] }}
-                    transition={{ duration: 0.25 }}
-                    className="app__flex"
-                  >
-                    <AiFillGithub />
                   </motion.div>
                 </a>
               </motion.div>
@@ -105,11 +96,11 @@ const Work = () => {
         ))}
       </motion.div>
     </>
-  );
-};
+  )
+}
 
 export default AppWrap(
-  MotionWrap(Work, 'app__works'),
-  'work',
-  'app__primarybg',
-);
+    MotionWrap(Achievements, 'app__works'),
+    'achievements',
+    'app__primarybg',
+  );
